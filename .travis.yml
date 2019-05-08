@@ -1,19 +1,20 @@
 sudo: required
 services:
   - docker
-
-before_install:
-  - docker build -t nitesh/docker-react -f Dockerfile.dev .
-
-script:
-  - docker run nitesh/docker-react npm run test -- --coverage
-
 deploy:
-  provider: azure_web_apps
-  username: $AZURE_WA_USERNAME
-  password: $AZURE_WA_PASSWORD
-  site: "dockerwebsite"
+  provider: elasticbeanstalk
+  app: "Docker"
+  env: "Docker-env"
+  region: "ap-south-1"
+  bucket_name: "elasticbeanstalk-ap-south-1-308015402648"
+  bucket_path: "Docker"
   on:
     branch: master
+  access_key_id: $AWS_ACCESS_Key
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
+
+after_deploy:
+- echo "done deploying"
  
     
