@@ -1,8 +1,10 @@
 sudo: required
 services:
   - docker
+before_script:
+  - psql -c "CREATE USER skateparks WITH PASSWORD 'skateparks';" -U postgres
 deploy:
-  provider: elasticbeanstalk
+  provider: elasticbeanstalk  
   app: "Docker"
   env: "Docker-env"
   region: "ap-south-1"
