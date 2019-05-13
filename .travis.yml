@@ -5,8 +5,8 @@ services:
 before_install:
   - docker build -t nitesh/docker-react -f Dockerfile.dev .
 
-# script:
-#   - docker run nitesh/docker-react npm run test -- --coverage
+script:
+  - docker run nitesh/docker-react npm run test -- --coverage
 
 deploy:
   provider: elasticbeanstalk
