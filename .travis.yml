@@ -1,23 +1,30 @@
 sudo: required
 services:
   - docker
-
 before_install:
+<<<<<<< HEAD
   - docker build -t nitesh/docker-react -f Dockerfile.dev .
 
 script:
   - docker run nitesh/docker-react npm run test -- --coverage
 
+=======
+  - docker build -t nitesh/docker-react .
+>>>>>>> db6be6412111f1000060074cf2c4046705225d16
 deploy:
-  provider: elasticbeanstalk
+  provider: elasticbeanstalk  
   app: "Docker"
   env: "Docker-env"
-  region: "us-east-2"
-  bucket_name: "elasticbeanstalk-us-east-2-308015402648"
+  region: "ap-south-1"
+  bucket_name: "elasticbeanstalk-ap-south-1-308015402648"
   bucket_path: "Docker"
   on:
     branch: master
   access_key_id: $AWS_ACCESS_Key
   secret_access_key: 
     secure: "$AWS_SECRET_KEY"
+
+after_deploy:
+- echo "done deploying"
+ 
     
