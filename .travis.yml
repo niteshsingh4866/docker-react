@@ -1,8 +1,8 @@
 sudo: required
 services:
   - docker
-before_script:
-  - psql -c "CREATE USER skateparks WITH PASSWORD 'skateparks';" -U postgres
+before_install:
+  - docker build -t nitesh/docker-react .
 deploy:
   provider: elasticbeanstalk  
   app: "Docker"
